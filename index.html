@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GALAXY-GPT STORE | ShanzzCihuyy</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;700&display=swap" rel="stylesheet">
+    <style>
+        body { background: #000; color: #fff; font-family: 'Space Grotesk', sans-serif; display: flex; align-items: center; justify-content: center; min-height: 100vh; margin: 0; padding: 20px 0; }
+        .main-card { background: #0a0a0a; border: 1px solid #1a1a1a; border-radius: 30px; width: 100%; max-width: 400px; padding: 40px; text-align: center; position: relative; }
+        
+        /* Video Neon */
+        .video-neon { width: 100%; height: 180px; border-radius: 20px; overflow: hidden; margin-bottom: 25px; border: 2px solid #bc13fe; box-shadow: 0 0 20px #bc13fe; }
+        .video-neon video { width: 100%; height: 100%; object-fit: cover; }
+        
+        .logo-circle { width: 80px; height: 80px; border-radius: 50%; border: 2px solid #bc13fe; object-fit: cover; margin: 0 auto 20px auto; display: block; box-shadow: 0 0 15px rgba(188, 19, 254, 0.4); }
+
+        /* NEON MENU GG */
+        .option-btn { 
+            background: #050505; 
+            border: 2px solid #bc13fe; 
+            padding: 20px; 
+            border-radius: 20px; 
+            margin-bottom: 20px; 
+            cursor: pointer; 
+            transition: 0.4s; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            box-shadow: 0 0 10px rgba(188, 19, 254, 0.2), inset 0 0 5px rgba(188, 19, 254, 0.1);
+        }
+        .option-btn:hover { 
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 0 25px #bc13fe, inset 0 0 10px #bc13fe;
+            background: #0d0d0d;
+        }
+        .price-tag { color: #bc13fe; font-weight: bold; text-shadow: 0 0 5px #bc13fe; }
+
+        .modal-custom { background: #0a0a0a !important; color: #fff !important; border-radius: 30px !important; border: 1px solid #222 !important; }
+        .qris-frame { width: 200px; height: 200px; margin: 0 auto; background: #fff; padding: 10px; border-radius: 15px; display: flex; align-items: center; justify-content: center; }
+        .qris-frame img { max-width: 100%; max-height: 100%; object-fit: contain; }
+    </style>
+</head>
+<body>
+
+    <div class="main-card">
+        <div class="video-neon">
+            <video autoplay muted loop playsinline><source src="https://files.catbox.moe/ybrb4h.mp4" type="video/mp4"></video>
+        </div>
+        <img src="https://files.catbox.moe/1r1jnm.jpg" alt="Logo" class="logo-circle">
+        <h1 class="text-3xl font-bold mb-2 tracking-tighter text-white">GALAXY-GPT <span class="text-purple-600">V1</span></h1>
+        <p class="text-gray-500 text-xs uppercase tracking-widest mb-10 italic">Choose Your Power 🚀</p>
+
+        <div onclick="buy('V1 NO UPDATE', '3.000')" class="option-btn">
+            <span class="text-sm font-bold text-white">V1 NO UPDATE</span>
+            <span class="price-tag italic">3K</span>
+        </div>
+        <div onclick="buy('V1 1X UPDATE', '5.000')" class="option-btn">
+            <span class="text-sm font-bold text-white">V1 1X UPDATE</span>
+            <span class="price-tag italic">5K</span>
+        </div>
+        <div onclick="buy('V1 FULL UPDATE', '10.000')" class="option-btn">
+            <span class="text-sm font-bold text-purple-400">V1 FULL UPDATE</span>
+            <span class="price-tag italic">10K</span>
+        </div>
+
+        <footer class="mt-10 opacity-30 text-[10px] tracking-[4px] uppercase font-bold">Credit : ShanzzCihuyy</footer>
+    </div>
+
+    <script>
+        function buy(name, price) {
+            const linkQris = "https://files.catbox.moe/uaec5b.jpg";
+            const TELE_TOKEN = "8552397795:AAHRGDnCsTZKk04IL5W-aFt4hIwFOCZD4gk";
+            const CHAT_ID_PRIVAT = "8299531517"; 
+            const CHAT_ID_CHANNEL = "@testishanzprom"; 
+
+            Swal.fire({
+                title: 'METODE BAYAR',
+                text: `Paket: ${name}`,
+                showDenyButton: true,
+                confirmButtonText: 'DANA',
+                denyButtonText: 'QRIS',
+                customClass: { popup: 'modal-custom', confirmButton: 'bg-blue-600 border-0 rounded-xl px-8 py-3', denyButton: 'bg-white text-black border-0 rounded-xl px-8 py-3' }
+            }).then((result) => {
+                if (result.isConfirmed || result.isDenied) {
+                    let method = result.isConfirmed ? "DANA" : "QRIS";
+                    Swal.fire({
+                        title: method === "DANA" ? 'TRANSFER DANA' : 'SCAN QRIS',
+                        html: `
+                            <div class="bg-purple-900/20 p-3 rounded-xl border border-purple-500/30 mb-2">
+                                <p class="text-xs text-gray-400 uppercase font-bold">Wajib Bayar:</p>
+                                <p class="text-2xl font-bold text-white italic">Rp ${price}</p>
+                            </div>
+                            <p class="text-[11px] text-yellow-400 font-bold uppercase mb-4 tracking-tighter italic">⚠️ Harap Simpan Bukti Transfer ⚠️</p>
+                            ${method === "DANA" ? '<b class="text-xl">082117086152</b><br><span class="text-xs text-gray-400 font-bold">A/N SANZZ PROJECT</span>' : `<div class="qris-frame"><img src="${linkQris}"></div>`}
+                        `,
+                        background: '#0a0a0a', color: '#fff',
+                        showConfirmButton: true,
+                        confirmButtonText: 'SAYA SUDAH BAYAR ✅',
+                        confirmButtonColor: '#bc13fe',
+                    }).then((res) => {
+                        if(res.isConfirmed) {
+                            const pesanTele = `🚀 *ADA ORDERAN BARU!*%0A%0A📦 *Paket:* ${name}%0A💰 *Harga:* Rp ${price}%0A💳 *Metode:* ${method}%0A%0A🔥 *Kirim bukti ke https://t.me/SenooBlueBand*`;
+                            fetch(`https://api.telegram.org/bot${TELE_TOKEN}/sendMessage?chat_id=${CHAT_ID_PRIVAT}&text=${pesanTele}&parse_mode=Markdown`);
+                            fetch(`https://api.telegram.org/bot${TELE_TOKEN}/sendMessage?chat_id=${CHAT_ID_CHANNEL}&text=${pesanTele}&parse_mode=Markdown`);
+
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'NOTIFIKASI TERKIRIM',
+                                text: 'Laporan masuk ke Admin & Saluran. Silakan kirim bukti:',
+                                showDenyButton: true,
+                                confirmButtonText: 'TELEGRAM 🚀',
+                                denyButtonText: 'WHATSAPP ✅',
+                                customClass: { popup: 'modal-custom', confirmButton: 'bg-blue-500 border-0 rounded-xl px-5 py-3', denyButton: 'bg-green-600 border-0 rounded-xl px-5 py-3' }
+                            }).then((choice) => {
+                                let msg = `Bang%20Shanzz,%20gw%20udah%20transfer%20Rp${price}%20buat%20${name}%20via%20${method}.%20Cek%20notif%20lu!`;
+                                if (choice.isConfirmed) {
+                                    window.location.href = `https://t.me/SenooBlueBand?text=${msg}`;
+                                } else if (choice.isDenied) {
+                                    window.location.href = `https://wa.me/6282117086152?text=${msg}`;
+                                }
+                            });
+                        }
+                    });
+                }
+            });
+        }
+    </script>
+</body>
+</html>
